@@ -1,0 +1,1914 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <meta name="theme-color" content="#fff9e8" />
+
+  <title>Happy 31st Monthsary 🌻</title>
+
+  <style>
+    /* =====================================================
+       RESET
+    ===================================================== */
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
+    }
+
+    body {
+      min-height: 100vh;
+      min-height: 100dvh;
+
+      overflow: hidden;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+      color: #4b3a21;
+
+      background:
+        radial-gradient(
+          circle at 50% 30%,
+          #fffef7 0%,
+          #fff9df 35%,
+          #f8edc5 68%,
+          #efdfa8 100%
+        );
+    }
+
+
+    /* =====================================================
+       BACKGROUND LIGHT
+    ===================================================== */
+
+    body::before {
+      content: "";
+
+      position: fixed;
+      top: 15%;
+      left: 50%;
+
+      width: 500px;
+      height: 500px;
+
+      transform: translateX(-50%);
+
+      border-radius: 50%;
+
+      background: rgba(255, 211, 77, 0.16);
+
+      filter: blur(100px);
+
+      pointer-events: none;
+    }
+
+
+    /* =====================================================
+       INTRO TEXT
+    ===================================================== */
+
+    .intro {
+      position: fixed;
+
+      top: 40px;
+      left: 50%;
+
+      width: 90%;
+
+      transform: translateX(-50%);
+
+      text-align: center;
+
+      opacity: 0;
+
+      animation:
+        introIn 1.2s ease 0.3s forwards,
+        introOut 1s ease 3.2s forwards;
+
+      z-index: 2;
+    }
+
+    .intro small {
+      display: block;
+
+      margin-bottom: 8px;
+
+      color: #9e782e;
+
+      font-size: 11px;
+
+      letter-spacing: 4px;
+
+      text-transform: uppercase;
+    }
+
+    .intro p {
+      color: #665333;
+
+      font-family: Georgia, serif;
+
+      font-size: clamp(18px, 5vw, 26px);
+
+      font-style: italic;
+    }
+
+    @keyframes introIn {
+      from {
+        opacity: 0;
+        transform: translate(-50%, 15px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+      }
+    }
+
+    @keyframes introOut {
+      to {
+        opacity: 0;
+        transform: translate(-50%, -15px);
+      }
+    }
+
+
+    /* =====================================================
+       FLOWER CONTAINER
+    ===================================================== */
+
+    .scene {
+      position: relative;
+
+      width: min(92vw, 460px);
+      height: min(88vh, 720px);
+
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+
+      z-index: 1;
+    }
+
+
+    .flower-wrapper {
+      position: relative;
+
+      width: 100%;
+      max-width: 430px;
+
+      opacity: 0;
+
+      transform:
+        translateY(35px)
+        scale(0.95);
+
+      animation: flowerEntrance 1.3s ease 1s forwards;
+    }
+
+
+    @keyframes flowerEntrance {
+      to {
+        opacity: 1;
+
+        transform:
+          translateY(0)
+          scale(1);
+      }
+    }
+
+
+    .sunflower {
+      display: block;
+
+      width: 100%;
+      height: auto;
+
+      overflow: visible;
+
+      filter:
+        drop-shadow(
+          0 24px 25px
+          rgba(85, 62, 15, 0.12)
+        );
+    }
+
+
+    /* =====================================================
+       DRAWING ANIMATION
+    ===================================================== */
+
+    .draw {
+      stroke-dasharray: 1600;
+      stroke-dashoffset: 1600;
+
+      animation: drawLine 2.7s ease forwards;
+    }
+
+
+    @keyframes drawLine {
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+
+
+    /* =====================================================
+       STEM
+    ===================================================== */
+
+    .stem {
+      fill: none;
+
+      stroke: #526f46;
+
+      stroke-width: 13;
+
+      stroke-linecap: round;
+
+      animation:
+        drawLine 2.5s ease 1.4s forwards;
+
+      stroke-dasharray: 1600;
+      stroke-dashoffset: 1600;
+    }
+
+
+    /* =====================================================
+       LEAVES
+    ===================================================== */
+
+    .leaf {
+      fill: transparent;
+
+      stroke: #4e7048;
+
+      stroke-width: 3;
+
+      stroke-linejoin: round;
+
+      stroke-dasharray: 1600;
+      stroke-dashoffset: 1600;
+
+      animation:
+        drawLine 2.2s ease 2.1s forwards,
+        fillLeaf 1.2s ease 4.3s forwards;
+    }
+
+
+    .leaf-vein {
+      fill: none;
+
+      stroke: #4e7048;
+
+      stroke-width: 2;
+
+      stroke-linecap: round;
+
+      stroke-dasharray: 800;
+      stroke-dashoffset: 800;
+
+      animation:
+        drawLine 1.7s ease 2.7s forwards;
+    }
+
+
+    @keyframes fillLeaf {
+      to {
+        fill: url(#leafGradient);
+      }
+    }
+
+
+    /* =====================================================
+       SUNFLOWER HEAD
+    ===================================================== */
+
+    .flower-head {
+      transform-origin: 200px 195px;
+    }
+
+
+    /*
+       IMPORTANT:
+       No CSS transform is applied directly to .petal.
+
+       The SVG <use> elements already have their own
+       transform="rotate(...)" values.
+
+       This prevents the detached-petal bug.
+    */
+
+    .petal {
+      fill: transparent;
+
+      stroke: #c98e16;
+
+      stroke-width: 2.2;
+
+      stroke-linejoin: round;
+
+      stroke-dasharray: 600;
+      stroke-dashoffset: 600;
+
+      animation:
+        drawPetal 1.7s ease forwards,
+        fillPetal 1.1s ease forwards;
+    }
+
+
+    @keyframes drawPetal {
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+
+
+    @keyframes fillPetal {
+      to {
+        fill: url(#petalGradient);
+      }
+    }
+
+
+    /* Individual timing */
+
+    .p1  { animation-delay: 2.8s, 4.4s; }
+    .p2  { animation-delay: 2.9s, 4.45s; }
+    .p3  { animation-delay: 3s,   4.5s; }
+    .p4  { animation-delay: 3.1s, 4.55s; }
+
+    .p5  { animation-delay: 3.2s, 4.6s; }
+    .p6  { animation-delay: 3.3s, 4.65s; }
+    .p7  { animation-delay: 3.4s, 4.7s; }
+    .p8  { animation-delay: 3.5s, 4.75s; }
+
+    .p9  { animation-delay: 3.6s, 4.8s; }
+    .p10 { animation-delay: 3.7s, 4.85s; }
+    .p11 { animation-delay: 3.8s, 4.9s; }
+    .p12 { animation-delay: 3.9s, 4.95s; }
+
+    .p13 { animation-delay: 4s,   5s; }
+    .p14 { animation-delay: 4.1s, 5.05s; }
+    .p15 { animation-delay: 4.2s, 5.1s; }
+    .p16 { animation-delay: 4.3s, 5.15s; }
+
+
+    /* Inner petals */
+
+    .inner-petal {
+      fill: transparent;
+
+      stroke: #d49b24;
+
+      stroke-width: 2;
+
+      stroke-dasharray: 500;
+      stroke-dashoffset: 500;
+
+      animation:
+        drawPetal 1.3s ease forwards,
+        fillInnerPetal 1s ease forwards;
+    }
+
+
+    @keyframes fillInnerPetal {
+      to {
+        fill: url(#innerPetalGradient);
+      }
+    }
+
+
+    .ip1 { animation-delay: 4.1s, 5s; }
+    .ip2 { animation-delay: 4.15s, 5.05s; }
+    .ip3 { animation-delay: 4.2s, 5.1s; }
+    .ip4 { animation-delay: 4.25s, 5.15s; }
+
+    .ip5 { animation-delay: 4.3s, 5.2s; }
+    .ip6 { animation-delay: 4.35s, 5.25s; }
+    .ip7 { animation-delay: 4.4s, 5.3s; }
+    .ip8 { animation-delay: 4.45s, 5.35s; }
+
+
+    /* =====================================================
+       SUNFLOWER CENTER
+    ===================================================== */
+
+    .sun-center {
+      fill: transparent;
+
+      stroke: #5c3b1b;
+
+      stroke-width: 3;
+
+      stroke-dasharray: 800;
+      stroke-dashoffset: 800;
+
+      animation:
+        drawLine 1.6s ease 4.5s forwards,
+        fillCenter 1.2s ease 5.35s forwards;
+    }
+
+
+    @keyframes fillCenter {
+      to {
+        fill: url(#centerGradient);
+      }
+    }
+
+
+    /* =====================================================
+       SUNFLOWER SEEDS
+    ===================================================== */
+
+    .seed {
+      fill: #34200f;
+
+      opacity: 0;
+
+      transform-box: fill-box;
+      transform-origin: center;
+
+      animation: seedAppear 0.6s ease forwards;
+    }
+
+
+    .seed:nth-child(1)  { animation-delay: 5.7s; }
+    .seed:nth-child(2)  { animation-delay: 5.75s; }
+    .seed:nth-child(3)  { animation-delay: 5.8s; }
+    .seed:nth-child(4)  { animation-delay: 5.85s; }
+    .seed:nth-child(5)  { animation-delay: 5.9s; }
+
+    .seed:nth-child(6)  { animation-delay: 5.95s; }
+    .seed:nth-child(7)  { animation-delay: 6s; }
+    .seed:nth-child(8)  { animation-delay: 6.05s; }
+    .seed:nth-child(9)  { animation-delay: 6.1s; }
+    .seed:nth-child(10) { animation-delay: 6.15s; }
+
+    .seed:nth-child(11) { animation-delay: 6.2s; }
+    .seed:nth-child(12) { animation-delay: 6.25s; }
+    .seed:nth-child(13) { animation-delay: 6.3s; }
+    .seed:nth-child(14) { animation-delay: 6.35s; }
+    .seed:nth-child(15) { animation-delay: 6.4s; }
+
+    .seed:nth-child(16) { animation-delay: 6.45s; }
+    .seed:nth-child(17) { animation-delay: 6.5s; }
+    .seed:nth-child(18) { animation-delay: 6.55s; }
+    .seed:nth-child(19) { animation-delay: 6.6s; }
+    .seed:nth-child(20) { animation-delay: 6.65s; }
+
+
+    @keyframes seedAppear {
+      from {
+        opacity: 0;
+
+        transform: scale(0.3);
+      }
+
+      to {
+        opacity: 0.72;
+
+        transform: scale(1);
+      }
+    }
+
+
+    /* =====================================================
+       FINISHED FLOWER SWAY
+    ===================================================== */
+
+    .flower-head.finished {
+      animation:
+        gentleSway 4s ease-in-out infinite;
+    }
+
+
+    @keyframes gentleSway {
+      0%,
+      100% {
+        transform: rotate(-1deg);
+      }
+
+      50% {
+        transform: rotate(1.2deg);
+      }
+    }
+
+
+    /* =====================================================
+       LITTLE SPARKLES
+    ===================================================== */
+
+    .sparkle {
+      position: fixed;
+
+      width: 5px;
+      height: 5px;
+
+      border-radius: 50%;
+
+      background: #d6aa43;
+
+      opacity: 0;
+
+      pointer-events: none;
+
+      animation: sparkleAnimation 1.8s ease forwards;
+    }
+
+
+    @keyframes sparkleAnimation {
+      0% {
+        opacity: 0;
+        transform: scale(0);
+      }
+
+      40% {
+        opacity: 0.8;
+        transform: scale(1);
+      }
+
+      100% {
+        opacity: 0;
+        transform: scale(0);
+      }
+    }
+
+
+    /* =====================================================
+       POPUP OVERLAY
+    ===================================================== */
+
+    .overlay {
+      position: fixed;
+      inset: 0;
+
+      z-index: 50;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 22px;
+
+      background:
+        rgba(81, 59, 20, 0.14);
+
+      backdrop-filter: blur(13px);
+      -webkit-backdrop-filter: blur(13px);
+
+      opacity: 0;
+      visibility: hidden;
+
+      transition:
+        opacity 0.9s ease,
+        visibility 0.9s ease;
+    }
+
+
+    .overlay.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+
+    /* =====================================================
+       MESSAGE CARD
+    ===================================================== */
+
+    .message-card {
+      position: relative;
+
+      width: min(100%, 470px);
+
+      max-height: 90vh;
+      overflow-y: auto;
+
+      padding: 43px 30px 34px;
+
+      border:
+        1px solid
+        rgba(255, 255, 255, 0.8);
+
+      border-radius: 32px;
+
+      text-align: center;
+
+      background:
+        rgba(255, 253, 245, 0.94);
+
+      box-shadow:
+        0 30px 90px
+        rgba(80, 54, 10, 0.18);
+
+      opacity: 0;
+
+      transform:
+        translateY(35px)
+        scale(0.93);
+
+      transition:
+        opacity 0.8s ease,
+        transform 0.8s
+          cubic-bezier(.18, .89, .32, 1.2);
+    }
+
+
+    .overlay.show .message-card {
+      opacity: 1;
+
+      transform:
+        translateY(0)
+        scale(1);
+    }
+
+
+    .tiny-label {
+      color: #b28631;
+
+      font-size: 10px;
+
+      font-weight: 700;
+
+      letter-spacing: 4px;
+
+      text-transform: uppercase;
+    }
+
+
+    .sunflower-icon {
+      margin: 12px 0 10px;
+
+      font-size: 54px;
+
+      animation:
+        iconFloat 3s ease-in-out infinite;
+    }
+
+
+    @keyframes iconFloat {
+      0%,
+      100% {
+        transform: translateY(0)
+          rotate(-2deg);
+      }
+
+      50% {
+        transform: translateY(-6px)
+          rotate(2deg);
+      }
+    }
+
+
+    .message-card h1 {
+      color: #61451c;
+
+      font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+      font-size:
+        clamp(29px, 8vw, 43px);
+
+      line-height: 1.12;
+    }
+
+
+    .message-card h2 {
+      margin-top: 10px;
+
+      color: #c29027;
+
+      font-size: 13px;
+
+      font-weight: 600;
+
+      letter-spacing: 3px;
+
+      text-transform: uppercase;
+    }
+
+
+    .divider {
+      width: 45px;
+      height: 1px;
+
+      margin: 23px auto;
+
+      background: #d4b56c;
+    }
+
+
+    .message-card p {
+      color: #64553d;
+
+      font-size: 15px;
+
+      line-height: 1.85;
+    }
+
+
+    .message-card p strong {
+      color: #705321;
+    }
+
+
+    .signature {
+      margin-top: 22px;
+
+      color: #9b711e;
+
+      font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+      font-size: 18px;
+
+      font-style: italic;
+    }
+
+
+    .months {
+      margin-top: 24px;
+
+      color: #ad8432;
+
+      font-size: 10px;
+
+      letter-spacing: 3px;
+
+      text-transform: uppercase;
+    }
+
+
+    /* =====================================================
+       FLOATING HEARTS / SUNFLOWERS
+    ===================================================== */
+
+    .floating-element {
+      position: fixed;
+
+      bottom: -50px;
+
+      z-index: 60;
+
+      pointer-events: none;
+
+      opacity: 0;
+
+      animation:
+        floatUp linear forwards;
+    }
+
+
+    @keyframes floatUp {
+      0% {
+        opacity: 0;
+
+        transform:
+          translateY(0)
+          rotate(0deg)
+          scale(0.7);
+      }
+
+      15% {
+        opacity: 0.8;
+      }
+
+      75% {
+        opacity: 0.65;
+      }
+
+      100% {
+        opacity: 0;
+
+        transform:
+          translateY(-115vh)
+          rotate(25deg)
+          scale(1.15);
+      }
+    }
+
+
+    /* =====================================================
+       MOBILE
+    ===================================================== */
+
+    @media (max-width: 500px) {
+
+      .intro {
+        top: 28px;
+      }
+
+      .scene {
+        width: 95vw;
+        height: 84vh;
+      }
+
+      .flower-wrapper {
+        width: 360px;
+        max-width: 95vw;
+      }
+
+      .message-card {
+        padding:
+          36px
+          23px
+          30px;
+
+        border-radius: 27px;
+      }
+
+      .sunflower-icon {
+        font-size: 47px;
+      }
+
+      .message-card p {
+        font-size: 14px;
+      }
+
+    }
+
+
+    /* =====================================================
+       REDUCE MOTION
+    ===================================================== */
+
+    @media (
+      prefers-reduced-motion:
+      reduce
+    ) {
+
+      *,
+      *::before,
+      *::after {
+        animation-duration:
+          0.01ms !important;
+
+        animation-iteration-count:
+          1 !important;
+      }
+
+    }
+
+  </style>
+</head>
+
+
+<body>
+
+
+  <!-- =====================================================
+       INTRO
+  ====================================================== -->
+
+  <div class="intro">
+
+    <small>
+      For my favorite person
+    </small>
+
+    <p>
+      I grew something for you...
+    </p>
+
+  </div>
+
+
+
+  <!-- =====================================================
+       SUNFLOWER SCENE
+  ====================================================== -->
+
+  <main class="scene">
+
+    <div class="flower-wrapper">
+
+      <svg
+        class="sunflower"
+        viewBox="0 0 400 660"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-label="Animated sunflower"
+      >
+
+
+        <!-- =================================================
+             DEFINITIONS
+        ================================================== -->
+
+        <defs>
+
+
+          <!-- Petal gradient -->
+
+          <linearGradient
+            id="petalGradient"
+            x1="0%"
+            y1="0%"
+            x2="100%"
+            y2="100%"
+          >
+
+            <stop
+              offset="0%"
+              stop-color="#ffe56b"
+            />
+
+            <stop
+              offset="45%"
+              stop-color="#ffc637"
+            />
+
+            <stop
+              offset="100%"
+              stop-color="#e9a116"
+            />
+
+          </linearGradient>
+
+
+          <!-- Inner petal gradient -->
+
+          <linearGradient
+            id="innerPetalGradient"
+            x1="0%"
+            y1="0%"
+            x2="0%"
+            y2="100%"
+          >
+
+            <stop
+              offset="0%"
+              stop-color="#ffd852"
+            />
+
+            <stop
+              offset="100%"
+              stop-color="#e7a11a"
+            />
+
+          </linearGradient>
+
+
+          <!-- Leaves -->
+
+          <linearGradient
+            id="leafGradient"
+            x1="0%"
+            y1="0%"
+            x2="100%"
+            y2="100%"
+          >
+
+            <stop
+              offset="0%"
+              stop-color="#9fbc79"
+            />
+
+            <stop
+              offset="100%"
+              stop-color="#6d965f"
+            />
+
+          </linearGradient>
+
+
+          <!-- Sunflower center -->
+
+          <radialGradient
+            id="centerGradient"
+            cx="42%"
+            cy="35%"
+            r="70%"
+          >
+
+            <stop
+              offset="0%"
+              stop-color="#956a30"
+            />
+
+            <stop
+              offset="50%"
+              stop-color="#66441f"
+            />
+
+            <stop
+              offset="100%"
+              stop-color="#3b2512"
+            />
+
+          </radialGradient>
+
+
+
+          <!--
+            OUTER PETAL TEMPLATE
+
+            Base of petal starts at:
+            X = 200
+            Y = 195
+
+            Every petal rotates around exactly:
+            200 195
+          -->
+
+          <path
+            id="outerPetal"
+            d="
+              M 200 195
+
+              C 178 166,
+                174 117,
+                200 72
+
+              C 226 117,
+                222 166,
+                200 195
+
+              Z
+            "
+          />
+
+
+          <!--
+            SHORTER INNER PETAL
+          -->
+
+          <path
+            id="innerPetal"
+            d="
+              M 200 195
+
+              C 184 170,
+                183 138,
+                200 105
+
+              C 217 138,
+                216 170,
+                200 195
+
+              Z
+            "
+          />
+
+
+        </defs>
+
+
+
+        <!-- =================================================
+             STEM
+        ================================================== -->
+
+        <path
+          class="stem"
+          d="
+            M 200 630
+
+            C 188 545,
+              205 465,
+              197 385
+
+            C 193 330,
+              198 275,
+              200 245
+          "
+        />
+
+
+
+        <!-- =================================================
+             LEFT LEAF
+        ================================================== -->
+
+        <path
+          class="leaf"
+          d="
+            M 196 465
+
+            C 156 424,
+              106 416,
+              66 441
+
+            C 101 482,
+              153 493,
+              196 465
+
+            Z
+          "
+        />
+
+
+        <path
+          class="leaf-vein"
+          d="
+            M 188 465
+
+            C 148 458,
+              108 448,
+              72 442
+          "
+        />
+
+
+
+        <!-- =================================================
+             RIGHT LEAF
+        ================================================== -->
+
+        <path
+          class="leaf"
+          d="
+            M 200 395
+
+            C 239 354,
+              287 347,
+              326 370
+
+            C 294 414,
+              243 425,
+              200 395
+
+            Z
+          "
+        />
+
+
+        <path
+          class="leaf-vein"
+          d="
+            M 208 395
+
+            C 249 391,
+              287 379,
+              320 371
+          "
+        />
+
+
+
+        <!-- =================================================
+             FLOWER HEAD
+        ================================================== -->
+
+        <g
+          class="flower-head"
+          id="flowerHead"
+        >
+
+
+          <!-- ===============================================
+               OUTER PETALS
+          ================================================ -->
+
+          <use
+            href="#outerPetal"
+            class="petal p1"
+            transform="
+              rotate(0 200 195)
+            "
+          />
+
+
+          <use
+            href="#outerPetal"
+            class="petal p2"
+            transform="
+              rotate(22.5 200 195)
+            "
+          />
+
+
+          <use
+            href="#outerPetal"
+            class="petal p3"
+            transform="
+              rotate(45 200 195)
+            "
+          />
+
+
+          <use
+            href="#outerPetal"
+            class="petal p4"
+            transform="
+              rotate(67.5 200 195)
+            "
+          />
+
+
+          <use
+            href="#outerPetal"
+            class="petal p5"
+            transform="
+              rotate(90 200 195)
+            "
+          />
+
+
+          <use
+            href="#outerPetal"
+            class="petal p6"
+            transform="
+              rotate(112.5 200 195)
+            "
+          />
+
+
+          <use
+            href="#outerPetal"
+            class="petal p7"
+            transform="
+              rotate(135 200 195)
+            "
+          />
+
+
+          <use
+            href="#outerPetal"
+            class="petal p8"
+            transform="
+              rotate(157.5 200 195)
+            "
+          />
+
+
+          <use
+            href="#outerPetal"
+            class="petal p9"
+            transform="
+              rotate(180 200 195)
+            "
+          />
+
+
+          <use
+            href="#outerPetal"
+            class="petal p10"
+            transform="
+              rotate(202.5 200 195)
+            "
+          />
+
+
+          <use
+            href="#outerPetal"
+            class="petal p11"
+            transform="
+              rotate(225 200 195)
+            "
+          />
+
+
+          <use
+            href="#outerPetal"
+            class="petal p12"
+            transform="
+              rotate(247.5 200 195)
+            "
+          />
+
+
+          <use
+            href="#outerPetal"
+            class="petal p13"
+            transform="
+              rotate(270 200 195)
+            "
+          />
+
+
+          <use
+            href="#outerPetal"
+            class="petal p14"
+            transform="
+              rotate(292.5 200 195)
+            "
+          />
+
+
+          <use
+            href="#outerPetal"
+            class="petal p15"
+            transform="
+              rotate(315 200 195)
+            "
+          />
+
+
+          <use
+            href="#outerPetal"
+            class="petal p16"
+            transform="
+              rotate(337.5 200 195)
+            "
+          />
+
+
+
+          <!-- ===============================================
+               INNER PETALS
+          ================================================ -->
+
+          <use
+            href="#innerPetal"
+            class="inner-petal ip1"
+            transform="
+              rotate(11.25 200 195)
+            "
+          />
+
+
+          <use
+            href="#innerPetal"
+            class="inner-petal ip2"
+            transform="
+              rotate(56.25 200 195)
+            "
+          />
+
+
+          <use
+            href="#innerPetal"
+            class="inner-petal ip3"
+            transform="
+              rotate(101.25 200 195)
+            "
+          />
+
+
+          <use
+            href="#innerPetal"
+            class="inner-petal ip4"
+            transform="
+              rotate(146.25 200 195)
+            "
+          />
+
+
+          <use
+            href="#innerPetal"
+            class="inner-petal ip5"
+            transform="
+              rotate(191.25 200 195)
+            "
+          />
+
+
+          <use
+            href="#innerPetal"
+            class="inner-petal ip6"
+            transform="
+              rotate(236.25 200 195)
+            "
+          />
+
+
+          <use
+            href="#innerPetal"
+            class="inner-petal ip7"
+            transform="
+              rotate(281.25 200 195)
+            "
+          />
+
+
+          <use
+            href="#innerPetal"
+            class="inner-petal ip8"
+            transform="
+              rotate(326.25 200 195)
+            "
+          />
+
+
+
+          <!-- ===============================================
+               BROWN CENTER
+
+               This covers the bases of the petals,
+               making the sunflower look connected.
+          ================================================ -->
+
+          <circle
+            class="sun-center"
+            cx="200"
+            cy="195"
+            r="67"
+          />
+
+
+
+          <!-- ===============================================
+               SEEDS
+          ================================================ -->
+
+          <g class="seed-group">
+
+
+            <!-- outer-ish seeds -->
+
+            <circle
+              class="seed"
+              cx="174"
+              cy="161"
+              r="3"
+            />
+
+            <circle
+              class="seed"
+              cx="192"
+              cy="153"
+              r="3"
+            />
+
+            <circle
+              class="seed"
+              cx="211"
+              cy="155"
+              r="3"
+            />
+
+            <circle
+              class="seed"
+              cx="227"
+              cy="166"
+              r="3"
+            />
+
+            <circle
+              class="seed"
+              cx="235"
+              cy="184"
+              r="3"
+            />
+
+
+            <circle
+              class="seed"
+              cx="234"
+              cy="204"
+              r="3"
+            />
+
+            <circle
+              class="seed"
+              cx="224"
+              cy="222"
+              r="3"
+            />
+
+            <circle
+              class="seed"
+              cx="208"
+              cy="232"
+              r="3"
+            />
+
+            <circle
+              class="seed"
+              cx="187"
+              cy="231"
+              r="3"
+            />
+
+            <circle
+              class="seed"
+              cx="169"
+              cy="220"
+              r="3"
+            />
+
+
+            <circle
+              class="seed"
+              cx="160"
+              cy="203"
+              r="3"
+            />
+
+            <circle
+              class="seed"
+              cx="161"
+              cy="181"
+              r="3"
+            />
+
+
+
+            <!-- middle seeds -->
+
+            <circle
+              class="seed"
+              cx="184"
+              cy="177"
+              r="3.5"
+            />
+
+            <circle
+              class="seed"
+              cx="203"
+              cy="173"
+              r="3.5"
+            />
+
+            <circle
+              class="seed"
+              cx="218"
+              cy="185"
+              r="3.5"
+            />
+
+            <circle
+              class="seed"
+              cx="218"
+              cy="205"
+              r="3.5"
+            />
+
+
+            <circle
+              class="seed"
+              cx="203"
+              cy="217"
+              r="3.5"
+            />
+
+            <circle
+              class="seed"
+              cx="184"
+              cy="211"
+              r="3.5"
+            />
+
+            <circle
+              class="seed"
+              cx="178"
+              cy="193"
+              r="3.5"
+            />
+
+
+            <!-- center -->
+
+            <circle
+              class="seed"
+              cx="199"
+              cy="195"
+              r="4"
+            />
+
+
+          </g>
+
+
+        </g>
+
+
+      </svg>
+
+    </div>
+
+  </main>
+
+
+
+  <!-- =====================================================
+       MONTHSARY POPUP
+  ====================================================== -->
+
+  <div
+    class="overlay"
+    id="overlay"
+  >
+
+    <div class="message-card">
+
+
+      <div class="tiny-label">
+        August • Our Story
+      </div>
+
+
+      <div class="sunflower-icon">
+        🌻
+      </div>
+
+
+      <h1>
+        Happy 31st
+        <br>
+        Monthsary
+      </h1>
+
+
+      <h2>
+        To My Sunshine
+      </h2>
+
+
+      <div class="divider"></div>
+
+
+      <p>
+
+        Just like a sunflower
+        always turns toward the sun,
+
+        <strong>
+          I will always find my way
+          back to you.
+        </strong>
+
+        <br><br>
+
+        Thank you for another month
+        of laughter, love, memories,
+        random moments, and everything
+        in between.
+
+        <br><br>
+
+        After
+
+        <strong>
+          31 months,
+        </strong>
+
+        I still choose you.
+
+        And if I had to start
+        everything all over again,
+
+        <strong>
+          I'd still choose you
+          every single time.
+        </strong>
+
+      </p>
+
+
+      <div class="signature">
+        I love you, always. ❤️
+      </div>
+
+
+      <div class="months">
+        31 months & counting
+      </div>
+
+
+    </div>
+
+  </div>
+
+
+
+  <!-- =====================================================
+       JAVASCRIPT
+  ====================================================== -->
+
+  <script>
+
+    /*
+      =====================================================
+      CONFIGURATION
+
+      You can easily change the timing here.
+      =====================================================
+    */
+
+    const FLOWER_FINISHED_TIME = 7000;
+
+    const MESSAGE_POPUP_TIME = 7800;
+
+
+
+    /*
+      =====================================================
+      FLOWER SWAY
+      =====================================================
+    */
+
+    setTimeout(() => {
+
+      const flowerHead =
+        document.getElementById("flowerHead");
+
+      flowerHead.classList.add("finished");
+
+      createSparkles();
+
+    }, FLOWER_FINISHED_TIME);
+
+
+
+    /*
+      =====================================================
+      SHOW MONTHSARY MESSAGE
+      =====================================================
+    */
+
+    setTimeout(() => {
+
+      const overlay =
+        document.getElementById("overlay");
+
+      overlay.classList.add("show");
+
+      startFloatingElements();
+
+    }, MESSAGE_POPUP_TIME);
+
+
+
+    /*
+      =====================================================
+      LITTLE GOLD SPARKLES
+      =====================================================
+    */
+
+    function createSparkles() {
+
+      const amount = 18;
+
+      for (
+        let i = 0;
+        i < amount;
+        i++
+      ) {
+
+        setTimeout(() => {
+
+          const sparkle =
+            document.createElement("div");
+
+          sparkle.className =
+            "sparkle";
+
+          /*
+            Keep sparkles around
+            the center of the screen.
+          */
+
+          sparkle.style.left =
+            35 +
+            Math.random() * 30 +
+            "vw";
+
+          sparkle.style.top =
+            20 +
+            Math.random() * 35 +
+            "vh";
+
+          sparkle.style.animationDuration =
+            1 +
+            Math.random() * 1.5 +
+            "s";
+
+          document.body.appendChild(
+            sparkle
+          );
+
+
+          setTimeout(() => {
+
+            sparkle.remove();
+
+          }, 2500);
+
+
+        }, i * 90);
+
+      }
+
+    }
+
+
+
+    /*
+      =====================================================
+      FLOATING HEARTS / FLOWERS
+      =====================================================
+    */
+
+    let floatingStarted = false;
+
+
+    function startFloatingElements() {
+
+      if (floatingStarted) {
+        return;
+      }
+
+      floatingStarted = true;
+
+
+      const icons = [
+        "🌻",
+        "💛",
+        "❤️",
+        "✨"
+      ];
+
+
+      setInterval(() => {
+
+        const floating =
+          document.createElement("div");
+
+
+        floating.className =
+          "floating-element";
+
+
+        floating.textContent =
+          icons[
+            Math.floor(
+              Math.random() *
+              icons.length
+            )
+          ];
+
+
+        /*
+          Random horizontal position
+        */
+
+        floating.style.left =
+          Math.random() *
+          100 +
+          "vw";
+
+
+        /*
+          Random size
+        */
+
+        floating.style.fontSize =
+          13 +
+          Math.random() *
+          16 +
+          "px";
+
+
+        /*
+          Random floating speed
+        */
+
+        const duration =
+          5 +
+          Math.random() *
+          3;
+
+
+        floating.style.animationDuration =
+          duration +
+          "s";
+
+
+        document.body.appendChild(
+          floating
+        );
+
+
+        /*
+          Remove it afterwards
+          so DOM doesn't get huge
+        */
+
+        setTimeout(() => {
+
+          floating.remove();
+
+        }, duration * 1000 + 500);
+
+
+      }, 650);
+
+    }
+
+  </script>
+
+
+</body>
+</html>
